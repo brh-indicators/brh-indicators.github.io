@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BRH Indicators – TradingView Indikatoren</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0d1117;
+      color: #e6edf3;
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0d1117ee;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #21262d;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #f0b429;
+      letter-spacing: 1px;
+    }
+    .nav-links a {
+      margin-left: 28px;
+      color: #8b949e;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #e6edf3; }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px 80px;
+      background: radial-gradient(ellipse at top, #1a1f2e 0%, #0d1117 60%);
+      border-bottom: 1px solid #21262d;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: #f0b42920;
+      color: #f0b429;
+      border: 1px solid #f0b42940;
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .hero h1 span { color: #f0b429; }
+    .hero p {
+      font-size: 1.1rem;
+      color: #8b949e;
+      max-width: 600px;
+      margin: 0 auto 36px;
+    }
+    .btn {
+      display: inline-block;
+      background: #f0b429;
+      color: #0d1117;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.1s;
+      cursor: pointer;
+    }
+    .btn:hover { background: #d4a017; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: #f0b429;
+      border: 2px solid #f0b429;
+      margin-left: 12px;
+    }
+    .btn-outline:hover { background: #f0b42915; transform: translateY(-1px); }
+
+    section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .section-title span { color: #f0b429; }
+    .section-sub {
+      text-align: center;
+      color: #8b949e;
+      margin-bottom: 56px;
+      font-size: 1rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: #f0b42960; transform: translateY(-3px); }
+    .feature-icon { font-size: 2rem; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .feature-card p { color: #8b949e; font-size: 0.9rem; }
+
+    .screenshots { background: #0d1117; border-top: 1px solid #21262d; border-bottom: 1px solid #21262d; }
+    .screenshots-inner { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+    }
+    .screenshot-item {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #21262d;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .screenshot-item:hover { border-color: #f0b42960; transform: scale(1.01); }
+    .screenshot-item img { width: 100%; display: block; }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #000000cc;
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .pricing-card {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 12px;
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s;
+    }
+    .pricing-card:hover { transform: translateY(-4px); }
+    .pricing-card.featured { border-color: #f0b429; }
+    .popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #f0b429;
+      color: #0d1117;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 4px 16px;
+      border-radius: 20px;
+    }
+    .pricing-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .pricing-price {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #f0b429;
+      margin: 16px 0 4px;
+    }
+    .pricing-price span { font-size: 1rem; color: #8b949e; font-weight: 400; }
+    .pricing-desc { color: #8b949e; font-size: 0.9rem; margin-bottom: 28px; }
+    .pricing-features { list-style: none; margin-bottom: 32px; text-align: left; }
+    .pricing-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid #21262d;
+      font-size: 0.9rem;
+      color: #c9d1d9;
+    }
+    .pricing-features li::before { content: "✓ "; color: #f0b429; font-weight: 700; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+    .step-num {
+      width: 48px;
+      height: 48px;
+      background: #f0b42920;
+      border: 2px solid #f0b429;
+      color: #f0b429;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .step h3 { margin-bottom: 8px; }
+    .step p { color: #8b949e; font-size: 0.9rem; }
+
+    .faq-list { max-width: 750px; margin: 0 auto; }
+    .faq-item {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+    .faq-question:hover { color: #f0b429; }
+    .faq-arrow { font-size: 1.2rem; transition: transform 0.3s; }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 24px;
+      color: #8b949e;
+      font-size: 0.95rem;
+    }
+    .faq-item.open .faq-answer { max-height: 200px; padding: 0 24px 20px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .contact-box {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 12px;
+      padding: 48px;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-box h2 { font-size: 1.8rem; margin-bottom: 12px; }
+    .contact-box p { color: #8b949e; margin-bottom: 28px; }
+    .contact-link {
+      color: #f0b429;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #f0b42960;
+      padding-bottom: 2px;
+    }
+
+    footer {
+      border-top: 1px solid #21262d;
+      padding: 32px 40px;
+      text-align: center;
+      color: #8b949e;
+      font-size: 0.85rem;
+    }
+    footer strong { color: #f0b429; }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 60px 20px 60px; }
+      .contact-box { padding: 28px 20px; }
+      .screenshots-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">BRH Indicators</div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="#pricing">Preise</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Kontakt</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">TradingView · Pine Script v5</div>
+  <h1>Professionelle Indikatoren<br/>für <span>smarte Trader</span></h1>
+  <p>Präzise HTF Fair Value Gaps, Top-Down-Analyse und intelligente Alarm-Systeme – direkt in TradingView.</p>
+  <a href="#pricing" class="btn">Jetzt Zugang holen</a>
+  <a href="#screenshots" class="btn btn-outline">Screenshots</a>
+</div>
+
+<section id="features">
+  <div class="section-title">Was dich <span>erwartet</span></div>
+  <div class="section-sub">Entwickelt für Price Action Trader die auf höchste Präzision setzen.</div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>HTF FVG Top-Down 3x</h3>
+      <p>Zeigt Fair Value Gaps aus 3 höheren Zeiteinheiten gleichzeitig auf deinem Chart an – ohne Zeitrahmen wechseln zu müssen.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Präzise Zonen</h3>
+      <p>FVGs werden automatisch erkannt, eingezeichnet und bei Mitigation entfernt. Immer aktuell, immer sauber.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔔</div>
+      <h3>Smarte Alarme</h3>
+      <p>Ein Alarm deckt alle Signale ab. Kein manuelles Setzen für jede Zone – einmal einstellen, immer benachrichtigt werden.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚙️</div>
+      <h3>Vollständig anpassbar</h3>
+      <p>Farben, Zeiteinheiten, FVG-Typen und Darstellung lassen sich komplett nach deinen Wünschen einstellen.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚀</div>
+      <h3>Kein Repaint</h3>
+      <p>Alle Signale sind auf Basis bestätigter Candles berechnet. Zuverlässig, reproduzierbar, kein Nachzeichnen.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <h3>Mobile Alarme</h3>
+      <p>Alarme laufen direkt über TradingView – funktioniert auf dem Handy per App, SMS oder E-Mail.</p>
+    </div>
+  </div>
+</section>
+
+<div class="screenshots" id="screenshots">
+  <div class="screenshots-inner">
+    <div class="section-title">So sieht es <span style="color:#f0b429;">aus</span></div>
+    <div class="section-sub" style="text-align:center;color:#8b949e;margin-bottom:40px;">Echte Screenshots direkt aus TradingView</div>
+    <div class="screenshots-grid">
+      <div class="screenshot-item" onclick="openLightbox('chart.png.png')">
+        <img src="chart.png.png" alt="HTF FVG Chart Screenshot" />
+      </div>
+      <div class="screenshot-item" onclick="openLightbox('gui.png.png')">
+        <img src="gui.png.png" alt="Indikator GUI Screenshot" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="howto">
+  <div class="section-title">So einfach <span>geht's</span></div>
+  <div class="section-sub">Zugang beantragen und in 5 Minuten loslegen.</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Plan wählen</h3>
+      <p>Wähle deinen gewünschten Abo-Plan und schreib uns auf Telegram.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Zahlung</h3>
+      <p>Zahlung per PayPal oder Überweisung – schnell und sicher.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Freischaltung</h3>
+      <p>Dein TradingView-Username wird innerhalb 24h freigeschaltet.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Loslegen</h3>
+      <p>Indikator zum Chart hinzufügen und direkt traden.</p>
+    </div>
+  </div>
+</section>
+
+<section id="alarmguide" style="background:#0d1117; border-top:1px solid #21262d; border-bottom:1px solid #21262d; max-width:100%; padding:80px 20px;">
+  <div style="max-width:700px; margin:0 auto;">
+    <div class="section-title">Alarm <span>einrichten</span></div>
+    <div class="section-sub">Schritt-für-Schritt Anleitung für TradingView Alarme</div>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:24px;">
+        <div style="color:#f0b429;font-weight:700;margin-bottom:8px;">① Indikator auf den Chart laden</div>
+        <div style="color:#8b949e;font-size:0.9rem;">Gehe zu „Indikatoren" → „Eingeladen" → wähle den BRH Indikator und füge ihn hinzu.</div>
+      </div>
+      <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:24px;">
+        <div style="color:#f0b429;font-weight:700;margin-bottom:8px;">② Alarm erstellen</div>
+        <div style="color:#8b949e;font-size:0.9rem;">Rechtsklick auf den Chart → „Alarm hinzufügen" oder die Uhr-Schaltfläche oben rechts.</div>
+      </div>
+      <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:24px;">
+        <div style="color:#f0b429;font-weight:700;margin-bottom:8px;">③ Bedingung einstellen</div>
+        <div style="color:#8b949e;font-size:0.9rem;">Als Quelle den BRH Indikator wählen → Bedingung auf „alert() function calls only" setzen.</div>
+      </div>
+      <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:24px;">
+        <div style="color:#f0b429;font-weight:700;margin-bottom:8px;">④ Benachrichtigung aktivieren</div>
+        <div style="color:#8b949e;font-size:0.9rem;">Haken bei App-Benachrichtigung, E-Mail oder SMS setzen → Alarm speichern. Fertig!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="section-title">Preise & <span>Pläne</span></div>
+  <div class="section-sub">Einmal zahlen, sofort Zugang – kein Abo, keine versteckten Kosten.</div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>1 Monat</h3>
+      <div class="pricing-price">19€ <span>/ Monat</span></div>
+      <div class="pricing-desc">Perfekt zum Testen</div>
+      <ul class="pricing-features">
+        <li>HTF FVG Top-Down 3x</li>
+        <li>Alle Alarm-Funktionen</li>
+        <li>Setup-Anleitung inklusive</li>
+        <li>Support per Telegram</li>
+      </ul>
+      <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Zugang anfragen</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="popular-badge">⭐ Beliebt</div>
+      <h3>3 Monate</h3>
+      <div class="pricing-price">14€ <span>/ Monat</span></div>
+      <div class="pricing-desc">42€ einmalig · Spare 15€</div>
+      <ul class="pricing-features">
+        <li>HTF FVG Top-Down 3x</li>
+        <li>Alle Alarm-Funktionen</li>
+        <li>Setup-Anleitung inklusive</li>
+        <li>Support per Telegram</li>
+        <li>Gratis Update bei neuer Version</li>
+      </ul>
+      <a href="#contact" class="btn" style="display:block;text-align:center;">Zugang anfragen</a>
+    </div>
+    <div class="pricing-card">
+      <h3>Lifetime</h3>
+      <div class="pricing-price">99€ <span>einmalig</span></div>
+      <div class="pricing-desc">Einmal zahlen – für immer dabei</div>
+      <ul class="pricing-features">
+        <li>HTF FVG Top-Down 3x</li>
+        <li>Alle Alarm-Funktionen</li>
+        <li>Setup-Anleitung inklusive</li>
+        <li>Support per Telegram</li>
+        <li>Alle zukünftigen Indikatoren</li>
+        <li>Lifetime Updates</li>
+      </ul>
+      <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Zugang anfragen</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background:#0d1117;border-top:1px solid #21262d;max-width:100%;padding:80px 20px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-title">Häufige <span>Fragen</span></div>
+    <div class="section-sub">Alles was du wissen musst – auf einen Blick.</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Wie erhalte ich Zugang nach der Zahlung?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">Nach deiner Anfrage meldest du dich mit deinem TradingView-Benutzernamen. Wir schalten dich innerhalb von 24 Stunden frei – du erhältst eine Benachrichtigung von TradingView.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Welche TradingView-Version brauche ich?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">Der Indikator funktioniert mit allen TradingView-Plänen, auch dem kostenlosen. Für mehrere Alarmkonfigurationen empfehlen wir den Essential-Plan von TradingView.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Gibt es eine Rückgabe-Garantie?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">Da es sich um digitale Inhalte handelt, gibt es nach Freischaltung keine Rückerstattung. Bei technischen Problemen helfen wir dir selbstverständlich sofort weiter.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Für welche Märkte funktioniert der Indikator?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">Der Indikator funktioniert auf allen Märkten die auf TradingView verfügbar sind – Forex, Krypto, Aktien, Futures und mehr.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Wie zahle ich?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">Aktuell akzeptieren wir PayPal und Banküberweisung. Schreib uns einfach auf Telegram und wir klären alles per Nachricht.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-box">
+    <h2>Zugang <span style="color:#f0b429;">anfragen</span></h2>
+    <p>Schreib uns auf Telegram mit deinem TradingView-Benutzernamen und gewünschtem Plan – wir melden uns schnellstmöglich.</p>
+    <a href="https://t.me/Marvin_Brh" class="btn" style="font-size:1.1rem;">
+      📱 Telegram: @Marvin_Brh
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <strong>BRH Indicators</strong> · Alle Rechte vorbehalten</p>
+  <p style="margin-top:8px;">Kein Anlageberatung. Trading beinhaltet Risiken. Vergangene Performance ist kein Indikator für zukünftige Ergebnisse.</p>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="Screenshot" onclick="event.stopPropagation()" />
+</div>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>

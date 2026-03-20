@@ -124,12 +124,15 @@
     .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
     .feature-card p { color: #8b949e; font-size: 0.9rem; }
 
-    .screenshots { background: #0d1117; border-top: 1px solid #21262d; border-bottom: 1px solid #21262d; }
-    .screenshots-inner { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
-    .screenshots-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 20px;
+    .screenshots {
+      background: #0d1117;
+      border-top: 1px solid #21262d;
+      border-bottom: 1px solid #21262d;
+    }
+    .screenshots-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 20px;
     }
     .screenshot-item {
       border-radius: 10px;
@@ -270,12 +273,6 @@
     }
     .contact-box h2 { font-size: 1.8rem; margin-bottom: 12px; }
     .contact-box p { color: #8b949e; margin-bottom: 28px; }
-    .contact-link {
-      color: #f0b429;
-      font-size: 1.1rem;
-      border-bottom: 1px solid #f0b42960;
-      padding-bottom: 2px;
-    }
 
     footer {
       border-top: 1px solid #21262d;
@@ -291,7 +288,6 @@
       .nav-links { display: none; }
       .hero { padding: 60px 20px 60px; }
       .contact-box { padding: 28px 20px; }
-      .screenshots-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -356,12 +352,12 @@
 <div class="screenshots" id="screenshots">
   <div class="screenshots-inner">
     <div class="section-title">So sieht es <span style="color:#f0b429;">aus</span></div>
-    <div class="section-sub" style="text-align:center;color:#8b949e;margin-bottom:40px;">Echte Screenshots direkt aus TradingView</div>
-    <div class="screenshots-grid">
-      <div class="screenshot-item" onclick="openLightbox('chart.png.png')">
+    <div class="section-sub">Echte Screenshots direkt aus TradingView</div>
+    <div style="display:flex;flex-direction:column;gap:20px;align-items:center;">
+      <div class="screenshot-item" style="width:100%;max-width:900px;" onclick="openLightbox('chart.png.png')">
         <img src="chart.png.png" alt="HTF FVG Chart Screenshot" />
       </div>
-      <div class="screenshot-item" onclick="openLightbox('gui.png.png')">
+      <div class="screenshot-item" style="width:100%;max-width:420px;" onclick="openLightbox('gui.png.png')">
         <img src="gui.png.png" alt="Indikator GUI Screenshot" />
       </div>
     </div>
@@ -395,8 +391,8 @@
   </div>
 </section>
 
-<section id="alarmguide" style="background:#0d1117; border-top:1px solid #21262d; border-bottom:1px solid #21262d; max-width:100%; padding:80px 20px;">
-  <div style="max-width:700px; margin:0 auto;">
+<section id="alarmguide" style="background:#0d1117;border-top:1px solid #21262d;border-bottom:1px solid #21262d;max-width:100%;padding:80px 20px;">
+  <div style="max-width:700px;margin:0 auto;">
     <div class="section-title">Alarm <span>einrichten</span></div>
     <div class="section-sub">Schritt-für-Schritt Anleitung für TradingView Alarme</div>
     <div style="display:flex;flex-direction:column;gap:16px;">
@@ -523,7 +519,7 @@
 
 <footer>
   <p>© 2025 <strong>BRH Indicators</strong> · Alle Rechte vorbehalten</p>
-  <p style="margin-top:8px;">Kein Anlageberatung. Trading beinhaltet Risiken. Vergangene Performance ist kein Indikator für zukünftige Ergebnisse.</p>
+  <p style="margin-top:8px;">Keine Anlageberatung. Trading beinhaltet Risiken. Vergangene Performance ist kein Indikator für zukünftige Ergebnisse.</p>
 </footer>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">

@@ -28,18 +28,8 @@
       justify-content: space-between;
       align-items: center;
     }
-    .nav-logo {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #f0b429;
-      letter-spacing: 1px;
-    }
-    .nav-links a {
-      margin-left: 28px;
-      color: #8b949e;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
+    .nav-logo { font-size: 1.4rem; font-weight: 700; color: #f0b429; letter-spacing: 1px; }
+    .nav-links a { margin-left: 28px; color: #8b949e; font-size: 0.95rem; transition: color 0.2s; }
     .nav-links a:hover { color: #e6edf3; }
 
     .hero {
@@ -59,19 +49,9 @@
       margin-bottom: 24px;
       letter-spacing: 1px;
     }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
     .hero h1 span { color: #f0b429; }
-    .hero p {
-      font-size: 1.1rem;
-      color: #8b949e;
-      max-width: 600px;
-      margin: 0 auto 36px;
-    }
+    .hero p { font-size: 1.1rem; color: #8b949e; max-width: 600px; margin: 0 auto 36px; }
     .btn {
       display: inline-block;
       background: #f0b429;
@@ -93,25 +73,11 @@
     .btn-outline:hover { background: #f0b42915; transform: translateY(-1px); }
 
     section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
+    .section-title { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
     .section-title span { color: #f0b429; }
-    .section-sub {
-      text-align: center;
-      color: #8b949e;
-      margin-bottom: 56px;
-      font-size: 1rem;
-    }
+    .section-sub { text-align: center; color: #8b949e; margin-bottom: 56px; font-size: 1rem; }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
     .feature-card {
       background: #161b22;
       border: 1px solid #21262d;
@@ -124,51 +90,136 @@
     .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
     .feature-card p { color: #8b949e; font-size: 0.9rem; }
 
-    .screenshots {
+    /* ===================== INDICATOR SECTION ===================== */
+    .indicators-section {
       background: #0d1117;
       border-top: 1px solid #21262d;
       border-bottom: 1px solid #21262d;
-    }
-    .screenshots-inner {
-      max-width: 1100px;
-      margin: 0 auto;
       padding: 80px 20px;
     }
-    .screenshot-item {
+    .indicators-inner { max-width: 1100px; margin: 0 auto; }
+
+    .indicator-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 80px;
+      padding-bottom: 80px;
+      border-bottom: 1px solid #21262d;
+    }
+    .indicator-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+    .indicator-image {
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid #21262d;
       cursor: pointer;
       transition: border-color 0.2s, transform 0.2s;
+      position: relative;
     }
-    .screenshot-item:hover { border-color: #f0b42960; transform: scale(1.01); }
-    .screenshot-item img { width: 100%; display: block; }
+    .indicator-image:hover { border-color: #f0b42960; transform: scale(1.01); }
+    .indicator-image img { width: 100%; display: block; }
+    .indicator-image-hint {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: #0d1117aa;
+      color: #f0b429;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid #f0b42940;
+    }
 
+    .indicator-info { display: flex; flex-direction: column; gap: 16px; }
+    .indicator-tag {
+      display: inline-block;
+      background: #f0b42920;
+      color: #f0b429;
+      border: 1px solid #f0b42940;
+      border-radius: 20px;
+      padding: 3px 12px;
+      font-size: 0.8rem;
+      width: fit-content;
+    }
+    .indicator-info h2 { font-size: 1.6rem; font-weight: 700; }
+    .indicator-info h2 span { color: #f0b429; }
+    .indicator-info p { color: #8b949e; font-size: 0.95rem; }
+    .indicator-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .indicator-features li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #c9d1d9; }
+    .indicator-features li::before { content: "✓"; color: #f0b429; font-weight: 700; flex-shrink: 0; }
+
+    /* ===================== LIGHTBOX ===================== */
     .lightbox {
       display: none;
       position: fixed;
       inset: 0;
-      background: #000000cc;
+      background: #000000dd;
       z-index: 999;
       justify-content: center;
       align-items: center;
     }
     .lightbox.active { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
+    .lightbox-content { position: relative; max-width: 90vw; max-height: 90vh; }
+    .lightbox-content img { max-width: 90vw; max-height: 85vh; border-radius: 8px; display: block; }
     .lightbox-close {
-      position: absolute;
+      position: fixed;
       top: 20px;
       right: 30px;
       font-size: 2rem;
       color: #fff;
       cursor: pointer;
+      z-index: 1000;
+    }
+    .lightbox-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #161b22cc;
+      border: 1px solid #21262d;
+      color: #fff;
+      font-size: 1.5rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .lightbox-nav:hover { background: #f0b42940; }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+    .lightbox-counter {
+      text-align: center;
+      color: #8b949e;
+      font-size: 0.85rem;
+      margin-top: 12px;
     }
 
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+    /* ===================== STEPS ===================== */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; text-align: center; }
+    .step-num {
+      width: 48px; height: 48px;
+      background: #f0b42920;
+      border: 2px solid #f0b429;
+      color: #f0b429;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
     }
+    .step h3 { margin-bottom: 8px; }
+    .step p { color: #8b949e; font-size: 0.9rem; }
+
+    /* ===================== PRICING ===================== */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
     .pricing-card {
       background: #161b22;
       border: 1px solid #21262d;
@@ -193,75 +244,30 @@
       border-radius: 20px;
     }
     .pricing-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
-    .pricing-price {
-      font-size: 2.8rem;
-      font-weight: 800;
-      color: #f0b429;
-      margin: 16px 0 4px;
-    }
+    .pricing-price { font-size: 2.8rem; font-weight: 800; color: #f0b429; margin: 16px 0 4px; }
     .pricing-price span { font-size: 1rem; color: #8b949e; font-weight: 400; }
     .pricing-desc { color: #8b949e; font-size: 0.9rem; margin-bottom: 28px; }
     .pricing-features { list-style: none; margin-bottom: 32px; text-align: left; }
-    .pricing-features li {
-      padding: 8px 0;
-      border-bottom: 1px solid #21262d;
-      font-size: 0.9rem;
-      color: #c9d1d9;
-    }
+    .pricing-features li { padding: 8px 0; border-bottom: 1px solid #21262d; font-size: 0.9rem; color: #c9d1d9; }
     .pricing-features li::before { content: "✓ "; color: #f0b429; font-weight: 700; }
 
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 32px;
-      text-align: center;
-    }
-    .step-num {
-      width: 48px;
-      height: 48px;
-      background: #f0b42920;
-      border: 2px solid #f0b429;
-      color: #f0b429;
-      font-weight: 700;
-      font-size: 1.2rem;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-    }
-    .step h3 { margin-bottom: 8px; }
-    .step p { color: #8b949e; font-size: 0.9rem; }
-
+    /* ===================== FAQ ===================== */
     .faq-list { max-width: 750px; margin: 0 auto; }
-    .faq-item {
-      background: #161b22;
-      border: 1px solid #21262d;
-      border-radius: 10px;
-      margin-bottom: 12px;
-      overflow: hidden;
-    }
-    .faq-question {
-      padding: 20px 24px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-    }
+    .faq-item { background: #161b22; border: 1px solid #21262d; border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+    .faq-question { padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
     .faq-question:hover { color: #f0b429; }
     .faq-arrow { font-size: 1.2rem; transition: transform 0.3s; }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      padding: 0 24px;
-      color: #8b949e;
-      font-size: 0.95rem;
-    }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px; color: #8b949e; font-size: 0.95rem; }
     .faq-item.open .faq-answer { max-height: 200px; padding: 0 24px 20px; }
     .faq-item.open .faq-arrow { transform: rotate(180deg); }
 
+    /* ===================== ALERT GUIDE ===================== */
+    .alert-guide-inner { max-width: 700px; margin: 0 auto; }
+    .alert-step { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 24px; margin-bottom: 12px; }
+    .alert-step-title { color: #f0b429; font-weight: 700; margin-bottom: 8px; }
+    .alert-step-text { color: #8b949e; font-size: 0.9rem; }
+
+    /* ===================== CONTACT ===================== */
     .contact-box {
       background: #161b22;
       border: 1px solid #21262d;
@@ -274,20 +280,15 @@
     .contact-box h2 { font-size: 1.8rem; margin-bottom: 12px; }
     .contact-box p { color: #8b949e; margin-bottom: 28px; }
 
-    footer {
-      border-top: 1px solid #21262d;
-      padding: 32px 40px;
-      text-align: center;
-      color: #8b949e;
-      font-size: 0.85rem;
-    }
+    footer { border-top: 1px solid #21262d; padding: 32px 40px; text-align: center; color: #8b949e; font-size: 0.85rem; }
     footer strong { color: #f0b429; }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
       .hero { padding: 60px 20px 60px; }
       .contact-box { padding: 28px 20px; }
+      .indicator-block { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -297,7 +298,7 @@
   <div class="nav-logo">BRH Indicators</div>
   <div class="nav-links">
     <a href="#features">Features</a>
-    <a href="#screenshots">Screenshots</a>
+    <a href="#indicators">Indicators</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
@@ -309,37 +310,38 @@
   <h1>Professional Indicators<br/>for <span>Smart Traders</span></h1>
   <p>Precise HTF Fair Value Gaps, top-down analysis and intelligent alert systems – directly in TradingView.</p>
   <a href="#pricing" class="btn">Get Access Now</a>
-  <a href="#screenshots" class="btn btn-outline">Screenshots</a>
+  <a href="#indicators" class="btn btn-outline">View Indicators</a>
 </div>
 
+<!-- FEATURES -->
 <section id="features">
   <div class="section-title">What to <span>Expect</span></div>
   <div class="section-sub">Built for price action traders who demand the highest precision.</div>
   <div class="features-grid">
     <div class="feature-card">
       <div class="feature-icon">📊</div>
-      <h3>HTF FVG Top-Down 3x</h3>
-      <p>Displays Fair Value Gaps from 3 higher timeframes simultaneously on your chart – no need to switch timeframes.</p>
+      <h3>Multi-Timeframe</h3>
+      <p>See higher timeframe data directly on your current chart – no need to switch timeframes.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🎯</div>
       <h3>Precise Zones</h3>
-      <p>FVGs are automatically detected, drawn and removed upon mitigation. Always up to date, always clean.</p>
+      <p>Key levels are automatically detected, drawn and removed upon mitigation. Always clean.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔔</div>
       <h3>Smart Alerts</h3>
-      <p>One alert covers all signals. No manual setting for each zone – set it once, get notified every time.</p>
+      <p>One alert covers all signals. Set it once, get notified every time something happens.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">⚙️</div>
       <h3>Fully Customizable</h3>
-      <p>Colors, timeframes, FVG types and display options can be fully adjusted to your preferences.</p>
+      <p>Colors, timeframes and display options can be fully adjusted to your preferences.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🚀</div>
       <h3>No Repaint</h3>
-      <p>All signals are calculated based on confirmed candles. Reliable, reproducible, no repainting.</p>
+      <p>All signals are calculated based on confirmed candles. Reliable and reproducible.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📱</div>
@@ -349,21 +351,42 @@
   </div>
 </section>
 
-<div class="screenshots" id="screenshots">
-  <div class="screenshots-inner">
-    <div class="section-title">See It <span style="color:#f0b429;">In Action</span></div>
-    <div class="section-sub">Real screenshots directly from TradingView</div>
-    <div style="display:flex;flex-direction:column;gap:20px;align-items:center;">
-      <div class="screenshot-item" style="width:100%;max-width:900px;" onclick="openLightbox('chart.png.png')">
-        <img src="chart.png.png" alt="HTF FVG Chart Screenshot" />
+<!-- INDICATORS -->
+<div class="indicators-section" id="indicators">
+  <div class="indicators-inner">
+    <div class="section-title" style="text-align:center;font-size:2rem;font-weight:700;margin-bottom:12px;">
+      Our <span style="color:#f0b429;">Indicators</span>
+    </div>
+    <div class="section-sub">Click any chart to see more screenshots.</div>
+
+    <!-- INDICATOR 1: HTF FVG -->
+    <div class="indicator-block">
+      <div class="indicator-image" onclick="openLightbox(0)">
+        <img src="chart.png.png" alt="HTF FVG Top-Down 3x Chart" />
+        <div class="indicator-image-hint">🔍 Click to enlarge</div>
       </div>
-      <div class="screenshot-item" style="width:100%;max-width:420px;" onclick="openLightbox('gui.png.png')">
-        <img src="gui.png.png" alt="Indicator GUI Screenshot" />
+      <div class="indicator-info">
+        <div class="indicator-tag">Fair Value Gaps · Multi-Timeframe</div>
+        <h2>HTF FVG <span>Top-Down 3x</span></h2>
+        <p>Displays Fair Value Gaps from 3 higher timeframes simultaneously on your chart. No more switching between timeframes – see the full picture at a glance.</p>
+        <ul class="indicator-features">
+          <li>3 configurable HTF timeframes in one view</li>
+          <li>Automatic FVG detection & mitigation</li>
+          <li>Bullish & bearish FVGs with separate colors</li>
+          <li>Smart alerts – one alert covers everything</li>
+          <li>No repaint – confirmed candles only</li>
+          <li>Show/hide mitigated & broken FVGs</li>
+        </ul>
+        <a href="#contact" class="btn" style="width:fit-content;">Get Access →</a>
       </div>
     </div>
+
+    <!-- Weitere Indikatoren können hier einfach als neuer indicator-block hinzugefügt werden -->
+
   </div>
 </div>
 
+<!-- HOW IT WORKS -->
 <section id="howto">
   <div class="section-title">How It <span>Works</span></div>
   <div class="section-sub">Request access and get started in 5 minutes.</div>
@@ -391,31 +414,31 @@
   </div>
 </section>
 
-<section id="alarmguide" style="background:#0d1117;border-top:1px solid #21262d;border-bottom:1px solid #21262d;max-width:100%;padding:80px 20px;">
-  <div style="max-width:700px;margin:0 auto;">
-    <div class="section-title">Setting Up <span>Alerts</span></div>
+<!-- ALERT GUIDE -->
+<div style="background:#0d1117;border-top:1px solid #21262d;border-bottom:1px solid #21262d;padding:80px 20px;">
+  <div class="alert-guide-inner">
+    <div class="section-title">Setting Up <span style="color:#f0b429;">Alerts</span></div>
     <div class="section-sub">Step-by-step guide for TradingView alerts</div>
-    <div style="display:flex;flex-direction:column;gap:16px;">
-      <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:24px;">
-        <div style="color:#f0b429;font-weight:700;margin-bottom:8px;">① Load the Indicator</div>
-        <div style="color:#8b949e;font-size:0.9rem;">Go to "Indicators" → "Invite-only" → select the BRH Indicator and add it to your chart.</div>
-      </div>
-      <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:24px;">
-        <div style="color:#f0b429;font-weight:700;margin-bottom:8px;">② Create an Alert</div>
-        <div style="color:#8b949e;font-size:0.9rem;">Right-click on the chart → "Add Alert" or click the clock icon in the top right.</div>
-      </div>
-      <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:24px;">
-        <div style="color:#f0b429;font-weight:700;margin-bottom:8px;">③ Set the Condition</div>
-        <div style="color:#8b949e;font-size:0.9rem;">Select the BRH Indicator as the source → set the condition to "alert() function calls only" – this covers all signals.</div>
-      </div>
-      <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:24px;">
-        <div style="color:#f0b429;font-weight:700;margin-bottom:8px;">④ Enable Notifications</div>
-        <div style="color:#8b949e;font-size:0.9rem;">Check app notification, email or SMS → save the alert. Done!</div>
-      </div>
+    <div class="alert-step">
+      <div class="alert-step-title">① Load the Indicator</div>
+      <div class="alert-step-text">Go to "Indicators" → "Invite-only" → select the BRH Indicator and add it to your chart.</div>
+    </div>
+    <div class="alert-step">
+      <div class="alert-step-title">② Create an Alert</div>
+      <div class="alert-step-text">Right-click on the chart → "Add Alert" or click the clock icon in the top right.</div>
+    </div>
+    <div class="alert-step">
+      <div class="alert-step-title">③ Set the Condition</div>
+      <div class="alert-step-text">Select the BRH Indicator as the source → set the condition to "alert() function calls only".</div>
+    </div>
+    <div class="alert-step">
+      <div class="alert-step-title">④ Enable Notifications</div>
+      <div class="alert-step-text">Check app notification, email or SMS → save the alert. Done!</div>
     </div>
   </div>
-</section>
+</div>
 
+<!-- PRICING -->
 <section id="pricing">
   <div class="section-title">Pricing & <span>Plans</span></div>
   <div class="section-sub">Pay once, get instant access – no subscription, no hidden fees.</div>
@@ -463,9 +486,10 @@
   </div>
 </section>
 
-<section id="faq" style="background:#0d1117;border-top:1px solid #21262d;max-width:100%;padding:80px 20px;">
+<!-- FAQ -->
+<div style="background:#0d1117;border-top:1px solid #21262d;padding:80px 20px;">
   <div style="max-width:1100px;margin:0 auto;">
-    <div class="section-title">Frequently Asked <span>Questions</span></div>
+    <div class="section-title" id="faq">Frequently Asked <span>Questions</span></div>
     <div class="section-sub">Everything you need to know – at a glance.</div>
     <div class="faq-list">
       <div class="faq-item">
@@ -480,7 +504,7 @@
           Which TradingView plan do I need?
           <span class="faq-arrow">▼</span>
         </div>
-        <div class="faq-answer">The indicator works with all TradingView plans, including the free one. For multiple alert configurations we recommend the Essential plan from TradingView.</div>
+        <div class="faq-answer">The indicator works with all TradingView plans, including the free one. For multiple alert configurations we recommend the Essential plan.</div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
@@ -505,8 +529,9 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="contact-box">
     <h2>Request <span style="color:#f0b429;">Access</span></h2>
@@ -522,23 +547,59 @@
   <p style="margin-top:8px;">Not financial advice. Trading involves risk. Past performance is not indicative of future results.</p>
 </footer>
 
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <span class="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightbox-img" src="" alt="Screenshot" onclick="event.stopPropagation()" />
+  <div class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); navigateLightbox(-1)">‹</div>
+  <div class="lightbox-content" onclick="event.stopPropagation()">
+    <img id="lightbox-img" src="" alt="Screenshot" />
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
+  <div class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); navigateLightbox(1)">›</div>
 </div>
 
 <script>
-  function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
+  // Indicator image galleries
+  // Format: { images: ['img1', 'img2', ...], index: currentIndex }
+  const galleries = [
+    { images: ['chart.png.png', 'gui.png.png'], labels: ['Chart View', 'Settings GUI'], index: 0 }
+  ];
+
+  let currentGallery = 0;
+
+  function openLightbox(galleryIndex) {
+    currentGallery = galleryIndex;
+    galleries[galleryIndex].index = 0;
+    updateLightbox();
     document.getElementById('lightbox').classList.add('active');
   }
+
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('active');
   }
-  function toggleFaq(el) {
-    const item = el.parentElement;
-    item.classList.toggle('open');
+
+  function navigateLightbox(dir) {
+    const g = galleries[currentGallery];
+    g.index = (g.index + dir + g.images.length) % g.images.length;
+    updateLightbox();
   }
+
+  function updateLightbox() {
+    const g = galleries[currentGallery];
+    document.getElementById('lightbox-img').src = g.images[g.index];
+    document.getElementById('lightbox-counter').textContent =
+      g.labels[g.index] + ' · ' + (g.index + 1) + ' / ' + g.images.length;
+  }
+
+  function toggleFaq(el) {
+    el.parentElement.classList.toggle('open');
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navigateLightbox(-1);
+    if (e.key === 'ArrowRight') navigateLightbox(1);
+  });
 </script>
 
 </body>

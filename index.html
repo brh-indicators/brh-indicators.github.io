@@ -251,6 +251,67 @@
     .pricing-features li { padding: 8px 0; border-bottom: 1px solid #21262d; font-size: 0.9rem; color: #c9d1d9; }
     .pricing-features li::before { content: "✓ "; color: #f0b429; font-weight: 700; }
 
+    /* ===================== CUSTOM SECTION ===================== */
+    .custom-section {
+      background: #0d1117;
+      border-top: 1px solid #21262d;
+      border-bottom: 1px solid #21262d;
+      padding: 80px 20px;
+    }
+    .custom-inner { max-width: 1100px; margin: 0 auto; }
+    .custom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .custom-info { display: flex; flex-direction: column; gap: 20px; }
+    .custom-info h2 { font-size: 2rem; font-weight: 700; line-height: 1.3; }
+    .custom-info h2 span { color: #f0b429; }
+    .custom-info p { color: #8b949e; font-size: 0.95rem; }
+    .custom-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .custom-features li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; color: #c9d1d9; }
+    .custom-features li::before { content: "✓"; color: #f0b429; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .custom-card {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 16px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .custom-card-tag {
+      display: inline-block;
+      background: #f0b42920;
+      color: #f0b429;
+      border: 1px solid #f0b42940;
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.8rem;
+      width: fit-content;
+    }
+    .custom-card h3 { font-size: 1.3rem; font-weight: 700; }
+    .custom-card p { color: #8b949e; font-size: 0.9rem; }
+    .custom-channels { display: flex; flex-direction: column; gap: 12px; }
+    .custom-channel {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      color: #c9d1d9;
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+    .custom-channel:hover { border-color: #f0b42960; color: #e6edf3; }
+    .custom-channel-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .custom-channel-label { font-weight: 600; }
+    .custom-channel-sub { font-size: 0.8rem; color: #8b949e; }
+
     /* ===================== FAQ ===================== */
     .faq-list { max-width: 750px; margin: 0 auto; }
     .faq-item { background: #161b22; border: 1px solid #21262d; border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
@@ -289,6 +350,7 @@
       .hero { padding: 60px 20px 60px; }
       .contact-box { padding: 28px 20px; }
       .indicator-block { grid-template-columns: 1fr; }
+      .custom-grid { grid-template-columns: 1fr; gap: 40px; }
     }
   </style>
 </head>
@@ -300,6 +362,7 @@
     <a href="#features">Features</a>
     <a href="#indicators">Indicators</a>
     <a href="#pricing">Pricing</a>
+    <a href="#custom">Custom</a>
     <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
   </div>
@@ -380,8 +443,6 @@
         <a href="#contact" class="btn" style="width:fit-content;">Get Access →</a>
       </div>
     </div>
-
-    <!-- Weitere Indikatoren können hier einfach als neuer indicator-block hinzugefügt werden -->
 
   </div>
 </div>
@@ -486,6 +547,51 @@
   </div>
 </section>
 
+<!-- CUSTOM INDICATORS -->
+<div class="custom-section" id="custom">
+  <div class="custom-inner">
+    <div class="section-title">Custom <span style="color:#f0b429;">Indicators</span></div>
+    <div class="section-sub">Need something built exactly to your specs? I'll code it for you.</div>
+    <div class="custom-grid">
+      <div class="custom-info">
+        <h2>Your Strategy.<br/><span>Your Indicator.</span></h2>
+        <p>Have a trading idea that no existing indicator covers? I build custom Pine Script indicators tailored exactly to your strategy – from simple tools to complex multi-timeframe systems.</p>
+        <ul class="custom-features">
+          <li>Built exactly to your specifications</li>
+          <li>Any concept: SMC, ICT, price action, custom logic</li>
+          <li>Full GUI with settings panel</li>
+          <li>Alerts included on request</li>
+          <li>Revisions until you're satisfied</li>
+          <li>Delivered directly to your TradingView account</li>
+        </ul>
+        <p style="color:#8b949e;font-size:0.85rem;">Price on request · Typically 50–300€ depending on complexity</p>
+      </div>
+      <div class="custom-card">
+        <div class="custom-card-tag">On Request</div>
+        <h3>How to Request</h3>
+        <p>Describe your idea as precisely as possible – the more detail, the better the result. Reach out via:</p>
+        <div class="custom-channels">
+          <a href="https://t.me/Marvin_Brh" class="custom-channel">
+            <div class="custom-channel-icon">📱</div>
+            <div>
+              <div class="custom-channel-label">Telegram</div>
+              <div class="custom-channel-sub">@Marvin_Brh · fastest response</div>
+            </div>
+          </a>
+          <a href="https://www.tradingview.com/u/Marvin_Brh/" class="custom-channel">
+            <div class="custom-channel-icon">📊</div>
+            <div>
+              <div class="custom-channel-label">TradingView</div>
+              <div class="custom-channel-sub">@Marvin_Brh · direct message</div>
+            </div>
+          </a>
+        </div>
+        <p style="color:#8b949e;font-size:0.8rem;margin-top:4px;">I'll get back to you with a price estimate within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FAQ -->
 <div style="background:#0d1117;border-top:1px solid #21262d;padding:80px 20px;">
   <div style="max-width:1100px;margin:0 auto;">
@@ -559,8 +665,6 @@
 </div>
 
 <script>
-  // Indicator image galleries
-  // Format: { images: ['img1', 'img2', ...], index: currentIndex }
   const galleries = [
     { images: ['chart.png.png', 'gui.png.png'], labels: ['Chart View', 'Settings GUI'], index: 0 }
   ];

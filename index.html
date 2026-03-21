@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWHRXBR91N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KWHRXBR91N');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BRH Indicators – TradingView Indicators</title>
@@ -90,7 +99,6 @@
     .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
     .feature-card p { color: #8b949e; font-size: 0.9rem; }
 
-    /* ===================== INDICATOR SECTION ===================== */
     .indicators-section {
       background: #0d1117;
       border-top: 1px solid #21262d;
@@ -150,7 +158,6 @@
     .indicator-features li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #c9d1d9; }
     .indicator-features li::before { content: "✓"; color: #f0b429; font-weight: 700; flex-shrink: 0; }
 
-    /* ===================== LIGHTBOX ===================== */
     .lightbox {
       display: none;
       position: fixed;
@@ -200,7 +207,6 @@
       margin-top: 12px;
     }
 
-    /* ===================== STEPS ===================== */
     .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; text-align: center; }
     .step-num {
       width: 48px; height: 48px;
@@ -218,7 +224,6 @@
     .step h3 { margin-bottom: 8px; }
     .step p { color: #8b949e; font-size: 0.9rem; }
 
-    /* ===================== PRICING ===================== */
     .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
     .pricing-card {
       background: #161b22;
@@ -251,7 +256,6 @@
     .pricing-features li { padding: 8px 0; border-bottom: 1px solid #21262d; font-size: 0.9rem; color: #c9d1d9; }
     .pricing-features li::before { content: "✓ "; color: #f0b429; font-weight: 700; }
 
-    /* ===================== CUSTOM SECTION ===================== */
     .custom-section {
       background: #0d1117;
       border-top: 1px solid #21262d;
@@ -312,7 +316,6 @@
     .custom-channel-label { font-weight: 600; }
     .custom-channel-sub { font-size: 0.8rem; color: #8b949e; }
 
-    /* ===================== FAQ ===================== */
     .faq-list { max-width: 750px; margin: 0 auto; }
     .faq-item { background: #161b22; border: 1px solid #21262d; border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
     .faq-question { padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
@@ -322,13 +325,11 @@
     .faq-item.open .faq-answer { max-height: 200px; padding: 0 24px 20px; }
     .faq-item.open .faq-arrow { transform: rotate(180deg); }
 
-    /* ===================== ALERT GUIDE ===================== */
     .alert-guide-inner { max-width: 700px; margin: 0 auto; }
     .alert-step { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 24px; margin-bottom: 12px; }
     .alert-step-title { color: #f0b429; font-weight: 700; margin-bottom: 8px; }
     .alert-step-text { color: #8b949e; font-size: 0.9rem; }
 
-    /* ===================== CONTACT ===================== */
     .contact-box {
       background: #161b22;
       border: 1px solid #21262d;

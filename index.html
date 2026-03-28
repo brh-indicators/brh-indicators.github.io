@@ -372,7 +372,7 @@
 <div class="hero">
   <div class="hero-badge">TradingView · Pine Script v5</div>
   <h1>Professional Indicators<br/>for <span>Smart Traders</span></h1>
-  <p>Precise HTF Fair Value Gaps, top-down analysis and intelligent alert systems – directly in TradingView.</p>
+  <p>Precise HTF Fair Value Gaps, Order Blocks, top-down analysis and intelligent alert systems – directly in TradingView.</p>
   <a href="#pricing" class="btn">Get Access Now</a>
   <a href="#indicators" class="btn btn-outline">View Indicators</a>
 </div>
@@ -444,6 +444,27 @@
       </div>
     </div>
 
+    <div class="indicator-block">
+      <div class="indicator-info">
+        <div class="indicator-tag">Order Blocks · Multi-Timeframe</div>
+        <h2>HTF OB <span>Top-Down 3x</span></h2>
+        <p>Automatically detects Order Blocks from 3 higher timeframes and displays them directly on your chart. Know exactly where institutional interest lies – without switching timeframes.</p>
+        <ul class="indicator-features">
+          <li>3 configurable HTF timeframes in one view</li>
+          <li>Automatic OB detection & mitigation</li>
+          <li>Bullish & bearish OBs with separate colors</li>
+          <li>Wick break detection – separate from full close break</li>
+          <li>Smart alerts with time window filter</li>
+          <li>No repaint – confirmed candles only</li>
+        </ul>
+        <a href="#contact" class="btn" style="width:fit-content;">Get Access →</a>
+      </div>
+      <div class="indicator-image" onclick="openLightbox(1)">
+        <img src="ob_chart.png" alt="HTF OB Top-Down 3x Chart" />
+        <div class="indicator-image-hint">🔍 Click to enlarge</div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -510,6 +531,7 @@
       <div class="pricing-desc">Perfect for trying it out</div>
       <ul class="pricing-features">
         <li>HTF FVG Top-Down 3x</li>
+        <li>HTF OB Top-Down 3x</li>
         <li>All alert functions</li>
         <li>Setup guide included</li>
         <li>Support via Telegram</li>
@@ -523,6 +545,7 @@
       <div class="pricing-desc">23€ / month · Save 18€</div>
       <ul class="pricing-features">
         <li>HTF FVG Top-Down 3x</li>
+        <li>HTF OB Top-Down 3x</li>
         <li>All alert functions</li>
         <li>Setup guide included</li>
         <li>Support via Telegram</li>
@@ -536,6 +559,7 @@
       <div class="pricing-desc">Pay once – access forever</div>
       <ul class="pricing-features">
         <li>HTF FVG Top-Down 3x</li>
+        <li>HTF OB Top-Down 3x</li>
         <li>All alert functions</li>
         <li>Setup guide included</li>
         <li>Support via Telegram</li>
@@ -670,7 +694,8 @@
 
 <script>
   const galleries = [
-    { images: ['chart.png.png', 'gui.png.png'], labels: ['Chart View', 'Settings GUI'], index: 0 }
+    { images: ['chart.png.png', 'gui.png.png'], labels: ['Chart View', 'Settings GUI'], index: 0 },
+    { images: ['ob_chart.png', 'ob_gui_1.png', 'ob_gui_2.png'], labels: ['Chart View', 'Settings GUI 1', 'Settings GUI 2'], index: 0 }
   ];
 
   let currentGallery = 0;

@@ -224,6 +224,30 @@
     .step h3 { margin-bottom: 8px; }
     .step p { color: #8b949e; font-size: 0.9rem; }
 
+    /* PRICING TABS */
+    .pricing-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 48px;
+    }
+    .pricing-tab {
+      background: #161b22;
+      border: 1px solid #21262d;
+      color: #8b949e;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pricing-tab:hover { border-color: #f0b42960; color: #e6edf3; }
+    .pricing-tab.active { background: #f0b42920; border-color: #f0b429; color: #f0b429; }
+
+    .pricing-panel { display: none; }
+    .pricing-panel.active { display: block; }
+
     .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
     .pricing-card {
       background: #161b22;
@@ -247,6 +271,7 @@
       font-size: 0.8rem;
       padding: 4px 16px;
       border-radius: 20px;
+      white-space: nowrap;
     }
     .pricing-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
     .pricing-price { font-size: 2.8rem; font-weight: 800; color: #f0b429; margin: 16px 0 4px; }
@@ -255,11 +280,6 @@
     .pricing-features { list-style: none; margin-bottom: 32px; text-align: left; }
     .pricing-features li { padding: 8px 0; border-bottom: 1px solid #21262d; font-size: 0.9rem; color: #c9d1d9; }
     .pricing-features li::before { content: "✓ "; color: #f0b429; font-weight: 700; }
-    .pricing-divider {
-      border: none;
-      border-top: 1px solid #21262d;
-      margin: 56px 0 48px;
-    }
 
     .custom-section {
       background: #0d1117;
@@ -357,6 +377,7 @@
       .contact-box { padding: 28px 20px; }
       .indicator-block { grid-template-columns: 1fr; }
       .custom-grid { grid-template-columns: 1fr; gap: 40px; }
+      .pricing-tabs { flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -528,143 +549,150 @@
 <!-- PRICING -->
 <section id="pricing">
   <div class="section-title">Pricing & <span>Plans</span></div>
-  <div class="section-sub">Each indicator available separately – or save with the bundle.</div>
+  <div class="section-sub">Choose your indicator – or save with the bundle.</div>
 
-  <div style="text-align:center;font-size:1.1rem;font-weight:700;color:#f0b429;margin-bottom:24px;letter-spacing:1px;">HTF FVG Top-Down 3x</div>
-  <div class="pricing-grid" style="margin-bottom:60px;">
-    <div class="pricing-card">
-      <h3>1 Month</h3>
-      <div class="pricing-price">24€ <span>/ month</span></div>
-      <div class="pricing-desc">Perfect for trying it out</div>
-      <ul class="pricing-features">
-        <li>HTF FVG Top-Down 3x</li>
-        <li>All alert functions</li>
-        <li>Setup guide included</li>
-        <li>Support via Telegram</li>
-      </ul>
-      <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
-    </div>
-    <div class="pricing-card featured">
-      <div class="popular-badge">⭐ Most Popular</div>
-      <h3>3 Months</h3>
-      <div class="pricing-price">59€ <span>one-time</span></div>
-      <div class="pricing-desc">~20€ / month · Save 13€</div>
-      <ul class="pricing-features">
-        <li>HTF FVG Top-Down 3x</li>
-        <li>All alert functions</li>
-        <li>Setup guide included</li>
-        <li>Support via Telegram</li>
-        <li>Free update on new version</li>
-      </ul>
-      <a href="#contact" class="btn" style="display:block;text-align:center;">Request Access</a>
-    </div>
-    <div class="pricing-card">
-      <h3>Lifetime</h3>
-      <div class="pricing-price">199€ <span>one-time</span></div>
-      <div class="pricing-desc">Pay once – access forever</div>
-      <ul class="pricing-features">
-        <li>HTF FVG Top-Down 3x</li>
-        <li>All alert functions</li>
-        <li>Setup guide included</li>
-        <li>Support via Telegram</li>
-        <li>All future updates</li>
-      </ul>
-      <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
+  <div class="pricing-tabs">
+    <div class="pricing-tab active" onclick="switchTab('fvg')">HTF FVG Top-Down 3x</div>
+    <div class="pricing-tab" onclick="switchTab('ob')">HTF OB Top-Down 3x</div>
+    <div class="pricing-tab" onclick="switchTab('bundle')">Bundle – Both ⭐</div>
+  </div>
+
+  <!-- FVG -->
+  <div class="pricing-panel active" id="tab-fvg">
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>1 Month</h3>
+        <div class="pricing-price">24€ <span>/ month</span></div>
+        <div class="pricing-desc">Perfect for trying it out</div>
+        <ul class="pricing-features">
+          <li>HTF FVG Top-Down 3x</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="popular-badge">⭐ Most Popular</div>
+        <h3>3 Months</h3>
+        <div class="pricing-price">59€ <span>one-time</span></div>
+        <div class="pricing-desc">~20€ / month · Save 13€</div>
+        <ul class="pricing-features">
+          <li>HTF FVG Top-Down 3x</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+          <li>Free update on new version</li>
+        </ul>
+        <a href="#contact" class="btn" style="display:block;text-align:center;">Request Access</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Lifetime</h3>
+        <div class="pricing-price">199€ <span>one-time</span></div>
+        <div class="pricing-desc">Pay once – access forever</div>
+        <ul class="pricing-features">
+          <li>HTF FVG Top-Down 3x</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+          <li>All future updates</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
+      </div>
     </div>
   </div>
 
-  <hr class="pricing-divider" />
-
-  <div style="text-align:center;font-size:1.1rem;font-weight:700;color:#f0b429;margin-bottom:24px;letter-spacing:1px;">HTF OB Top-Down 3x</div>
-  <div class="pricing-grid" style="margin-bottom:60px;">
-    <div class="pricing-card">
-      <h3>1 Month</h3>
-      <div class="pricing-price">24€ <span>/ month</span></div>
-      <div class="pricing-desc">Perfect for trying it out</div>
-      <ul class="pricing-features">
-        <li>HTF OB Top-Down 3x</li>
-        <li>All alert functions</li>
-        <li>Setup guide included</li>
-        <li>Support via Telegram</li>
-      </ul>
-      <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
-    </div>
-    <div class="pricing-card featured">
-      <div class="popular-badge">⭐ Most Popular</div>
-      <h3>3 Months</h3>
-      <div class="pricing-price">59€ <span>one-time</span></div>
-      <div class="pricing-desc">~20€ / month · Save 13€</div>
-      <ul class="pricing-features">
-        <li>HTF OB Top-Down 3x</li>
-        <li>All alert functions</li>
-        <li>Setup guide included</li>
-        <li>Support via Telegram</li>
-        <li>Free update on new version</li>
-      </ul>
-      <a href="#contact" class="btn" style="display:block;text-align:center;">Request Access</a>
-    </div>
-    <div class="pricing-card">
-      <h3>Lifetime</h3>
-      <div class="pricing-price">199€ <span>one-time</span></div>
-      <div class="pricing-desc">Pay once – access forever</div>
-      <ul class="pricing-features">
-        <li>HTF OB Top-Down 3x</li>
-        <li>All alert functions</li>
-        <li>Setup guide included</li>
-        <li>Support via Telegram</li>
-        <li>All future updates</li>
-      </ul>
-      <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
+  <!-- OB -->
+  <div class="pricing-panel" id="tab-ob">
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>1 Month</h3>
+        <div class="pricing-price">24€ <span>/ month</span></div>
+        <div class="pricing-desc">Perfect for trying it out</div>
+        <ul class="pricing-features">
+          <li>HTF OB Top-Down 3x</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="popular-badge">⭐ Most Popular</div>
+        <h3>3 Months</h3>
+        <div class="pricing-price">59€ <span>one-time</span></div>
+        <div class="pricing-desc">~20€ / month · Save 13€</div>
+        <ul class="pricing-features">
+          <li>HTF OB Top-Down 3x</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+          <li>Free update on new version</li>
+        </ul>
+        <a href="#contact" class="btn" style="display:block;text-align:center;">Request Access</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Lifetime</h3>
+        <div class="pricing-price">199€ <span>one-time</span></div>
+        <div class="pricing-desc">Pay once – access forever</div>
+        <ul class="pricing-features">
+          <li>HTF OB Top-Down 3x</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+          <li>All future updates</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
+      </div>
     </div>
   </div>
 
-  <hr class="pricing-divider" />
-
-  <div style="text-align:center;font-size:1.1rem;font-weight:700;color:#f0b429;margin-bottom:8px;letter-spacing:1px;">Bundle – Both Indicators</div>
-  <div style="text-align:center;color:#8b949e;font-size:0.9rem;margin-bottom:24px;">Save compared to buying separately</div>
-  <div class="pricing-grid">
-    <div class="pricing-card">
-      <h3>1 Month</h3>
-      <div class="pricing-price">39€ <span>/ month</span></div>
-      <div class="pricing-desc">Save 9€ vs. separately</div>
-      <ul class="pricing-features">
-        <li>HTF FVG Top-Down 3x</li>
-        <li>HTF OB Top-Down 3x</li>
-        <li>All alert functions</li>
-        <li>Setup guide included</li>
-        <li>Support via Telegram</li>
-      </ul>
-      <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
-    </div>
-    <div class="pricing-card featured">
-      <div class="popular-badge">⭐ Best Value</div>
-      <h3>3 Months</h3>
-      <div class="pricing-price">99€ <span>one-time</span></div>
-      <div class="pricing-desc">Save 19€ vs. separately</div>
-      <ul class="pricing-features">
-        <li>HTF FVG Top-Down 3x</li>
-        <li>HTF OB Top-Down 3x</li>
-        <li>All alert functions</li>
-        <li>Setup guide included</li>
-        <li>Support via Telegram</li>
-        <li>Free update on new version</li>
-      </ul>
-      <a href="#contact" class="btn" style="display:block;text-align:center;">Request Access</a>
-    </div>
-    <div class="pricing-card">
-      <h3>Lifetime</h3>
-      <div class="pricing-price">349€ <span>one-time</span></div>
-      <div class="pricing-desc">Save 49€ vs. separately</div>
-      <ul class="pricing-features">
-        <li>HTF FVG Top-Down 3x</li>
-        <li>HTF OB Top-Down 3x</li>
-        <li>All alert functions</li>
-        <li>Setup guide included</li>
-        <li>Support via Telegram</li>
-        <li>All future indicators</li>
-        <li>Lifetime updates</li>
-      </ul>
-      <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
+  <!-- BUNDLE -->
+  <div class="pricing-panel" id="tab-bundle">
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>1 Month</h3>
+        <div class="pricing-price">39€ <span>/ month</span></div>
+        <div class="pricing-desc">Save 9€ vs. separately</div>
+        <ul class="pricing-features">
+          <li>HTF FVG Top-Down 3x</li>
+          <li>HTF OB Top-Down 3x</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="popular-badge">⭐ Best Value</div>
+        <h3>3 Months</h3>
+        <div class="pricing-price">99€ <span>one-time</span></div>
+        <div class="pricing-desc">Save 19€ vs. separately</div>
+        <ul class="pricing-features">
+          <li>HTF FVG Top-Down 3x</li>
+          <li>HTF OB Top-Down 3x</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+          <li>Free update on new version</li>
+        </ul>
+        <a href="#contact" class="btn" style="display:block;text-align:center;">Request Access</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Lifetime</h3>
+        <div class="pricing-price">349€ <span>one-time</span></div>
+        <div class="pricing-desc">Save 49€ vs. separately</div>
+        <ul class="pricing-features">
+          <li>HTF FVG Top-Down 3x</li>
+          <li>HTF OB Top-Down 3x</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+          <li>All future indicators</li>
+          <li>Lifetime updates</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
+      </div>
     </div>
   </div>
 </section>
@@ -820,6 +848,13 @@
     document.getElementById('lightbox-img').src = g.images[g.index];
     document.getElementById('lightbox-counter').textContent =
       g.labels[g.index] + ' · ' + (g.index + 1) + ' / ' + g.images.length;
+  }
+
+  function switchTab(tab) {
+    document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.pricing-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
   }
 
   function toggleFaq(el) {

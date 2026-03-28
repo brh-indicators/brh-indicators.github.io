@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWHRXBR91N"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-KWHRXBR91N');
-  </script>
+  <!-- Google Analytics wird nur nach Zustimmung geladen -->
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -372,6 +365,52 @@
     .footer-links a { color: #8b949e; font-size: 0.85rem; transition: color 0.2s; }
     .footer-links a:hover { color: #f0b429; }
 
+    /* COOKIE BANNER */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #161b22;
+      border-top: 1px solid #21262d;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      z-index: 9999;
+      flex-wrap: wrap;
+    }
+    .cookie-banner.hidden { display: none; }
+    .cookie-text { color: #8b949e; font-size: 0.9rem; max-width: 700px; }
+    .cookie-text a { color: #f0b429; }
+    .cookie-text a:hover { text-decoration: underline; }
+    .cookie-buttons { display: flex; gap: 12px; flex-shrink: 0; }
+    .cookie-accept {
+      background: #f0b429;
+      color: #0d1117;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .cookie-accept:hover { background: #d4a017; }
+    .cookie-decline {
+      background: transparent;
+      color: #8b949e;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 8px;
+      border: 1px solid #21262d;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .cookie-decline:hover { border-color: #8b949e; color: #e6edf3; }
+
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
@@ -380,10 +419,22 @@
       .indicator-block { grid-template-columns: 1fr; }
       .custom-grid { grid-template-columns: 1fr; gap: 40px; }
       .pricing-tabs { flex-wrap: wrap; }
+      .cookie-banner { padding: 20px; flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-text">
+    Wir verwenden Cookies und Google Analytics, um die Nutzung unserer Website zu analysieren. Weitere Infos in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+  </div>
+  <div class="cookie-buttons">
+    <button class="cookie-decline" onclick="declineCookies()">Ablehnen</button>
+    <button class="cookie-accept" onclick="acceptCookies()">Akzeptieren</button>
+  </div>
+</div>
 
 <nav>
   <div class="nav-logo">BRH Indicators</div>
@@ -822,6 +873,39 @@
 </div>
 
 <script>
+  // COOKIE BANNER
+  function loadGA() {
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-KWHRXBR91N';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-KWHRXBR91N');
+  }
+
+  function acceptCookies() {
+    localStorage.setItem('cookieConsent', 'accepted');
+    document.getElementById('cookieBanner').classList.add('hidden');
+    loadGA();
+  }
+
+  function declineCookies() {
+    localStorage.setItem('cookieConsent', 'declined');
+    document.getElementById('cookieBanner').classList.add('hidden');
+  }
+
+  const consent = localStorage.getItem('cookieConsent');
+  if (consent === 'accepted') {
+    document.getElementById('cookieBanner').classList.add('hidden');
+    loadGA();
+  } else if (consent === 'declined') {
+    document.getElementById('cookieBanner').classList.add('hidden');
+  }
+
+  // LIGHTBOX
   const galleries = [
     { images: ['chart.png.png', 'gui.png.png'], labels: ['Chart View', 'Settings GUI'], index: 0 },
     { images: ['ob_chart.png.png', 'ob_gui_1.png.png', 'ob_gui_2.png.png'], labels: ['Chart View', 'Settings GUI 1', 'Settings GUI 2'], index: 0 }

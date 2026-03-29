@@ -222,6 +222,7 @@
       justify-content: center;
       gap: 8px;
       margin-bottom: 48px;
+      flex-wrap: wrap;
     }
     .pricing-tab {
       background: #161b22;
@@ -365,7 +366,6 @@
     .footer-links a { color: #8b949e; font-size: 0.85rem; transition: color 0.2s; }
     .footer-links a:hover { color: #f0b429; }
 
-    /* COOKIE BANNER */
     .cookie-banner {
       position: fixed;
       bottom: 0;
@@ -502,6 +502,7 @@
     </div>
     <div class="section-sub">Click any chart to see more screenshots.</div>
 
+    <!-- FVG -->
     <div class="indicator-block">
       <div class="indicator-image" onclick="openLightbox(0)">
         <img src="chart.png.png" alt="HTF FVG Top-Down 3x Chart" />
@@ -523,6 +524,7 @@
       </div>
     </div>
 
+    <!-- OB -->
     <div class="indicator-block">
       <div class="indicator-info">
         <div class="indicator-tag">Order Blocks · Multi-Timeframe</div>
@@ -543,6 +545,29 @@
         <div class="indicator-image-hint">🔍 Click to enlarge</div>
       </div>
     </div>
+
+    <!-- AKTIEN TRADE SCREENER -->
+    <div class="indicator-block">
+      <div class="indicator-image" onclick="openLightbox(2)">
+        <img src="ats_chart.png" alt="Aktien Trade Screener Chart" />
+        <div class="indicator-image-hint">🔍 Click to enlarge</div>
+      </div>
+      <div class="indicator-info">
+        <div class="indicator-tag">Stocks · FVG · Liquidity Sweeps</div>
+        <h2>Aktien Trade <span>Screener</span></h2>
+        <p>Combines Fair Value Gaps, IFVGs and HTF Liquidity Sweeps in one indicator – optimized for stock trading. Identify high-probability setups directly on the weekly chart.</p>
+        <ul class="indicator-features">
+          <li>Automatic FVG & IFVG detection with state machine</li>
+          <li>HTF Liquidity Sweep overlay</li>
+          <li>Bullish & bearish zones with separate colors</li>
+          <li>Midline & border fully customizable</li>
+          <li>Smart zone management – auto-removes on mitigation</li>
+          <li>No repaint – confirmed candles only</li>
+        </ul>
+        <a href="#contact" class="btn" style="width:fit-content;">Get Access →</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -606,9 +631,11 @@
   <div class="pricing-tabs">
     <div class="pricing-tab active" onclick="switchTab(event, 'fvg')">HTF FVG Top-Down 3x</div>
     <div class="pricing-tab" onclick="switchTab(event, 'ob')">HTF OB Top-Down 3x</div>
-    <div class="pricing-tab" onclick="switchTab(event, 'bundle')">Bundle – Both ⭐</div>
+    <div class="pricing-tab" onclick="switchTab(event, 'ats')">Aktien Trade Screener</div>
+    <div class="pricing-tab" onclick="switchTab(event, 'bundle')">Bundle – All 3 ⭐</div>
   </div>
 
+  <!-- FVG -->
   <div class="pricing-panel active" id="tab-fvg">
     <div class="pricing-grid">
       <div class="pricing-card">
@@ -653,6 +680,7 @@
     </div>
   </div>
 
+  <!-- OB -->
   <div class="pricing-panel" id="tab-ob">
     <div class="pricing-grid">
       <div class="pricing-card">
@@ -697,15 +725,15 @@
     </div>
   </div>
 
-  <div class="pricing-panel" id="tab-bundle">
+  <!-- ATS -->
+  <div class="pricing-panel" id="tab-ats">
     <div class="pricing-grid">
       <div class="pricing-card">
         <h3>1 Month</h3>
-        <div class="pricing-price">39€ <span>/ month</span></div>
-        <div class="pricing-desc">Save 9€ vs. separately</div>
+        <div class="pricing-price">24€ <span>/ month</span></div>
+        <div class="pricing-desc">Perfect for trying it out</div>
         <ul class="pricing-features">
-          <li>HTF FVG Top-Down 3x</li>
-          <li>HTF OB Top-Down 3x</li>
+          <li>Aktien Trade Screener</li>
           <li>All alert functions</li>
           <li>Setup guide included</li>
           <li>Support via Telegram</li>
@@ -713,13 +741,12 @@
         <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
       </div>
       <div class="pricing-card featured">
-        <div class="popular-badge">⭐ Best Value</div>
+        <div class="popular-badge">⭐ Most Popular</div>
         <h3>3 Months</h3>
-        <div class="pricing-price">99€ <span>one-time</span></div>
-        <div class="pricing-desc">Save 19€ vs. separately</div>
+        <div class="pricing-price">59€ <span>one-time</span></div>
+        <div class="pricing-desc">~20€ / month · Save 13€</div>
         <ul class="pricing-features">
-          <li>HTF FVG Top-Down 3x</li>
-          <li>HTF OB Top-Down 3x</li>
+          <li>Aktien Trade Screener</li>
           <li>All alert functions</li>
           <li>Setup guide included</li>
           <li>Support via Telegram</li>
@@ -729,11 +756,61 @@
       </div>
       <div class="pricing-card">
         <h3>Lifetime</h3>
-        <div class="pricing-price">349€ <span>one-time</span></div>
-        <div class="pricing-desc">Save 49€ vs. separately</div>
+        <div class="pricing-price">199€ <span>one-time</span></div>
+        <div class="pricing-desc">Pay once – access forever</div>
+        <ul class="pricing-features">
+          <li>Aktien Trade Screener</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+          <li>All future updates</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUNDLE -->
+  <div class="pricing-panel" id="tab-bundle">
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>1 Month</h3>
+        <div class="pricing-price">59€ <span>/ month</span></div>
+        <div class="pricing-desc">Save 13€ vs. separately</div>
         <ul class="pricing-features">
           <li>HTF FVG Top-Down 3x</li>
           <li>HTF OB Top-Down 3x</li>
+          <li>Aktien Trade Screener</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="display:block;text-align:center;">Request Access</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="popular-badge">⭐ Best Value</div>
+        <h3>3 Months</h3>
+        <div class="pricing-price">149€ <span>one-time</span></div>
+        <div class="pricing-desc">Save 28€ vs. separately</div>
+        <ul class="pricing-features">
+          <li>HTF FVG Top-Down 3x</li>
+          <li>HTF OB Top-Down 3x</li>
+          <li>Aktien Trade Screener</li>
+          <li>All alert functions</li>
+          <li>Setup guide included</li>
+          <li>Support via Telegram</li>
+          <li>Free update on new version</li>
+        </ul>
+        <a href="#contact" class="btn" style="display:block;text-align:center;">Request Access</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Lifetime</h3>
+        <div class="pricing-price">499€ <span>one-time</span></div>
+        <div class="pricing-desc">Save 98€ vs. separately</div>
+        <ul class="pricing-features">
+          <li>HTF FVG Top-Down 3x</li>
+          <li>HTF OB Top-Down 3x</li>
+          <li>Aktien Trade Screener</li>
           <li>All alert functions</li>
           <li>Setup guide included</li>
           <li>Support via Telegram</li>
@@ -908,7 +985,8 @@
   // LIGHTBOX
   const galleries = [
     { images: ['chart.png.png', 'gui.png.png'], labels: ['Chart View', 'Settings GUI'], index: 0 },
-    { images: ['ob_chart.png.png', 'ob_gui_1.png.png', 'ob_gui_2.png.png'], labels: ['Chart View', 'Settings GUI 1', 'Settings GUI 2'], index: 0 }
+    { images: ['ob_chart.png.png', 'ob_gui_1.png.png', 'ob_gui_2.png.png'], labels: ['Chart View', 'Settings GUI 1', 'Settings GUI 2'], index: 0 },
+    { images: ['ats_chart.png', 'ats_gui_1.png', 'ats_gui_2.png'], labels: ['Chart View', 'Settings GUI 1', 'Settings GUI 2'], index: 0 }
   ];
 
   let currentGallery = 0;
